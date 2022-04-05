@@ -47,6 +47,10 @@ module.exports = {
                     loader: 'babel-loader',
                 },
             },
+            {
+                test: /\.css$/i,
+                use: ["Style-loader", "css-loader"]
+            },
         ],
     },
     plugins: [
