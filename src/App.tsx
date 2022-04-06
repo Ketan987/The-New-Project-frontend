@@ -1,6 +1,7 @@
 import React from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalNavigator from './components/globalNavigation.component/Navigation';
+import NavigationLocal from './components/localNavigationComponent/Navigation';
 
 const One = () => {
     return (
@@ -20,10 +21,11 @@ const Two = () => {
 
 
 export default () => {
-    return(
+    return (
         <div>
             <Router>
                 <GlobalNavigator />
+                <NavigationLocal />
                 <Routes>
                     <Route path='/'>
                         <Route index element={<One />}></Route>
@@ -40,6 +42,7 @@ export default () => {
                     </Route>
                 </Routes>
             </Router>
+
         </div>
     )
 };
