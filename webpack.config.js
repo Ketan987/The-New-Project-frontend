@@ -38,6 +38,13 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     },
+    devServer: {
+        historyApiFallback: true,
+        hot: true,
+        headers: {
+            'x-powered-By': 'NProjectTeam'
+        }
+    },
     module:{
         rules: [
             {

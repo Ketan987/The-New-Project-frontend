@@ -1,7 +1,8 @@
+import { Container } from '@mui/material';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalNavigator from './components/globalNavigation.component/Navigation';
-import NavigationLocal from './components/localNavigationComponent/Navigation';
+import HomeProfession from './components/profession.component/home.professional';
 
 const One = () => {
     return (
@@ -25,24 +26,15 @@ export default () => {
         <div>
             <Router>
                 <GlobalNavigator />
-                <NavigationLocal />
+                {/* <NavigationLocal /> */}
+                <Container>
                 <Routes>
-                    <Route path='/'>
-                        <Route index element={<One />}></Route>
-                        <Route path="professions" element={<Two />}>
-                            <Route index element={<Two />}></Route>
-                            <Route path=":professionId" element={<Two />}></Route>
-                            <Route path="edit" element={<Two />}></Route>
-                        </Route>
-                        <Route path="stories" element={<One />}>
-                            <Route path=":storyId" element={<One />}></Route>
-                            <Route path="edit" element={<One />}></Route>
-                        </Route>
-
-                    </Route>
+                    <Route path='/' element={<One />}></Route>
+                    <Route path='/professions' element ={<HomeProfession />}></Route>
+                    <Route path='/stories' element={<Two />}></Route>
                 </Routes>
+                </Container>
             </Router>
-
         </div>
     )
 };
