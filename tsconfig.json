@@ -9,9 +9,6 @@
     "strict": true,
     "jsx": "react",
     "baseUrl": "./src",
-    "paths": {
-      "@/*" :["./"]
-    },
     "lib": ["ES2015", "DOM.Iterable", "ES2016.Array.Include", "ES2017.Object", "DOM"],
     "module": "esNext",
     "removeComments": true,

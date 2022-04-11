@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import fetchProfessionalList from '../../actions/professionList';
-import axios from 'axios';
-import ActionTypes from '../../constant/ActionTypes';
 
 
 const HomeProfesssion = () => {
@@ -28,37 +26,7 @@ const HomeProfesssion = () => {
         {profession: "two", popularity: "", demands: "", profession_type: "", people_choice: ""},
         {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
         {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
+        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""}
         
     ];
 

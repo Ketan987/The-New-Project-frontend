@@ -1,6 +1,5 @@
 import ActionTypes from '../constant/ActionTypes';
 import api from '../apiClient/index';
-import apiurls from '../constant/config';
 
 
 export default function fetchProfessionalList(dispatch: Function){

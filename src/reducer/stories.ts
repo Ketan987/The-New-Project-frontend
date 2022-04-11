@@ -9,7 +9,8 @@ const initialState = {
     isLoading: false,
     filter: false,
     search: false,
-    failedFetch: {}
+    failedFetch: {},
+    opened: {}
 }
 
 export default function stories(state:any=initialState, action:any):  any{
@@ -20,6 +21,8 @@ export default function stories(state:any=initialState, action:any):  any{
             return {...state, list:action.payload.list}
         case ActionTypes.FETCH_STORIES_LIST_FAIL:
             return {...state, failedLoading: action.payload.err}
+        case ActionTypes.SELECT_STORY_ACTION:
+            return {...state, opend: action.payload.selected}
         case ActionTypes.STORIES_LIST_PAGE_CHANGE:
         default:
             return state;
