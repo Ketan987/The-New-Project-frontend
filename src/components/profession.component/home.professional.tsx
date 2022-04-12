@@ -1,5 +1,6 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, tableCellClasses } from '@mui/material';
+import { Paper, Button, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, tableCellClasses } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import ActionTypes from '../../constant/ActionTypes';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import fetchProfessionalList from '../../actions/professionList';
@@ -9,16 +10,17 @@ const HomeProfesssion = () => {
     const [page, setPage] = React.useState(0);
     const [loading, setLoading] = useState(true);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [view, setView] = useState(false);
     const dispatch = useDispatch();
     const professionLists = useSelector((state:any)=> state.profesionReducer);
-    console.log(professionLists);
+    console.log(professionLists.list);
 
     const columns = [
         {id: 1, label: "Profession"},
-        {id: 2, label: "Popularity"},
-        {id: 3, label: "Current Demands"},
-        {id: 4, label: "Profession Type"},
-        {id: 5, label: "People Choice"}
+        {id: 2, label: "Category / Type"},
+        {id: 3, label: "Popularity"},
+        {id: 4, label: "Average Salary"},
+        {id: 5, label: "Appeared"}
     ];
 
     const rows= [
@@ -54,6 +56,11 @@ const HomeProfesssion = () => {
         fetchProfessionalList(dispatch);
     }, []);
 
+    const handleClick = (title: string) => {
+        dispatch({type: ActionTypes.SELECT_PROFESSION_ACTION, payload: {selected: professionLists.list.find((profession:any) => profession.title === title)}})
+        setView(true);
+    }
+
     return(
         <div>
             <Paper sx={{ width: '100%', overflow: 'hidden'}}>
@@ -72,18 +79,14 @@ const HomeProfesssion = () => {
                         </TableHead>
                         {loading ? (
                             <TableBody>
-                                {rows.map((row)=> {
+                                {professionLists.list.map((row)=> {
                                     return (
                                         <TableRow>
-                                            <StyledTableCell
-                                            key={row.profession}
-                                            >
-                                                {row.profession}
-                                            </StyledTableCell>
-                                            <StyledTableCell
-                                            key={row.popularity}
-                                            >
-                                                {row.popularity}
+                                            
+                                            <StyledTableCell>
+                                            <Button onClick={() => handleClick(row.title)}>
+                                            {row.title}
+                                        </Button>    
                                             </StyledTableCell>
                                             <StyledTableCell
                                             key={row.demands}
@@ -91,9 +94,14 @@ const HomeProfesssion = () => {
                                                 {row.demands}
                                             </StyledTableCell>
                                             <StyledTableCell
-                                            key={row.profession_type}
+                                            key={row.popularity}
                                             >
-                                                {row.profession_type}
+                                                {row.popularity}
+                                            </StyledTableCell>
+                                            <StyledTableCell
+                                            key={row.past_records.earning}
+                                            >
+                                                {row.past_records.earning}
                                             </StyledTableCell>
                                             <StyledTableCell
                                             key={row.people_choice}

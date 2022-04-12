@@ -2,7 +2,7 @@ import { Button, Card, CardContent, Grid, Typography } from '@mui/material';
 import ActionTypes from '../../constant/ActionTypes';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import fetchStoriesList from '../../actions/storiesList';
+import fetchStoriesList from '../../actions/storiesList'
 
 const StoriesHome = () => {
     const dispatch = useDispatch();
@@ -15,19 +15,20 @@ const StoriesHome = () => {
         setView(true);
     }
 
+
     const ListView = () => {
         return (
             <div>
                 {storiesList.list.map((story:any) => {
                     return (
-                        <div>
-                            <Grid container spacing={1}>
-                                <Card>
-                                    <CardContent>
+                        <div >
+                            <Grid container spacing={1} sx={{padding:1}}>
+                                <Card style={{width: "100%"}}>
+                                    <CardContent >
                                         <Button onClick={() => handleClick(story.post_title)}>
                                             {story.post_title}
                                         </Button>
-                                        <div>
+                                        <div style={{float: "right"}}>
                                             <Typography color="text.secondary">
                                                 {story.post_like.length} likes
                                             </Typography>
@@ -47,8 +48,28 @@ const StoriesHome = () => {
 
     const HalfAndHalfView = () => {
         return (
-            <div>
+            <div style={{display: "flex"}}>
+                <div style={{flex:"0.3"}}>
+                {storiesList.list.map((story:any) => {
+                    return (
+                        <div >
+                            <Grid container spacing={1} sx={{padding:1}}>
+                                <Card style={{width: "100%"}}>
+                                    <CardContent >
+                                        <Button onClick={() => handleClick(story.post_title)}>
+                                            {story.post_title}
+                                        </Button>
+                                        </CardContent>
+                                </Card>
+                            </Grid>
+                        </div>
+                    )
+                })}
+                </div>
+
+                <div style={{ textAlign:"center", flex:"0.7"}}>
                 <p>selected {storiesList.opend.post_title}</p> 
+                </div>
             </div>
         )
     };
