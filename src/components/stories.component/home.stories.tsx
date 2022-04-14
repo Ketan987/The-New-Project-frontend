@@ -2,12 +2,14 @@ import { Button, Card, CardContent, Grid, Typography } from '@mui/material';
 import ActionTypes from '../../constant/ActionTypes';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import fetchStoriesList from '../../actions/storiesList'
+import {fetchStoriesList} from '../../actions/storiesList'
+import { useNavigate } from "react-router-dom";
 
 const StoriesHome = () => {
     const dispatch = useDispatch();
     const storiesList = useSelector((state:any)=> state.storiesReducer);
     const [view, setView] = useState(false);
+    const navigate = useNavigate();
     
     console.log(storiesList);
     const handleClick = (title: string) => {
@@ -67,8 +69,13 @@ const StoriesHome = () => {
                 })}
                 </div>
 
-                <div style={{ textAlign:"center", flex:"0.7"}}>
-                <p>selected {storiesList.opend.post_title}</p> 
+                <div style={{ textAlign:"center", flex:"0.7", border: '1px solid #4CAF50'}}>
+                    <p>selected {storiesList.opend.post_title}</p> 
+                    <div dangerouslySetInnerHTML={{__html: storiesList.opend.post_content}}></div>
+                    <Button onClick={() => {
+                        navigate(`/story/edit?id=${storiesList.opend._id}`)
+                    } 
+                    }>EDIT</Button>
                 </div>
             </div>
         )
@@ -81,6 +88,9 @@ const StoriesHome = () => {
     return (
         <div>
             <p>it's working</p>
+            <Button onClick={() => {
+                navigate('/story/create')
+            }}>create</Button>
             {view ? <HalfAndHalfView /> : <ListView />}
         </div>
     )
