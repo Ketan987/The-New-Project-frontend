@@ -26,3 +26,16 @@ export function saveNewStory(dispatch:Function, payload: any){
         dispatch({type: ActionTypes.STORY_SAVE_FAIL, payload:{ err }})
     })
 }
+
+export function updateStory(dispatch:Function, payload:any){
+    apiClient
+    .put(`http://localhost:5000/api/story/${payload.id}`, {
+        post_content: payload.content
+    })
+    .then(res=> {
+        dispatch({type: ActionTypes.STORY_SAVE_UPDATE})
+    })
+    .catch(err => {
+        dispatch({type: ActionTypes.STORY_SAVE_FAIL, payload:{ err }})
+    })
+}

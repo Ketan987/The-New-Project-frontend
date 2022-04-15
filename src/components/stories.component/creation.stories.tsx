@@ -1,21 +1,33 @@
 import {Editor} from 'react-draft-wysiwyg';
 import { convertToRaw, EditorState} from 'draft-js';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import draftToHtml from 'draftjs-to-html';
+import {stateFromHTML} from 'draft-js-import-html';
 import { Container, Button, TextField, Box, FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useParams } from 'react-router';
-import { saveNewStory } from '../../actions/storiesList';
+import { saveNewStory, updateStory } from '../../actions/storiesList';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
 
 const WEditor = () =>{
-    const [state, setState] = useState(EditorState.createEmpty());
-    const [title, setTitle] = useState(' ');
-    const [storyType, setStoryType] = useState('OTHER')
-    const params = useParams();
-    const [query, setQuery] = useSearchParams();
+    const storiesList = useSelector((state:any) => state.storiesReducer);
+    const getInitialDataForUpdate = () => {
+        console.log("early data", storiesList.opend.post_content);
+        const content = stateFromHTML(storiesList.opend.post_content);
+        const updatedState = EditorState.createWithContent(content);
+        return updatedState;
+    };
+    const 
+    [query, setQuery] = useSearchParams();
+    const [state, setState] = useState(
+        query.get("id") ? getInitialDataForUpdate() : EditorState.createEmpty());
+    const [title, setTitle] = useState(
+        query.get("id") ? storiesList.opend.post_title : '');
+    const [storyType, setStoryType] = useState(
+        query.get("id") ? storiesList.opend.post_type : '')
+    const params = useParams();  
     const dispatch = useDispatch();
     console.log("params", params);
     console.log("query", query.get("id"));
@@ -27,7 +39,13 @@ const WEditor = () =>{
     const handleSave = async() => {
         const rawContentState = convertToRaw(state.getCurrentContent());
         console.log("draftjs-html code output: -", draftToHtml(rawContentState));
-        await saveNewStory(dispatch, {storyType, title, content:draftToHtml(rawContentState)})
+        if(query.get("id")){
+            console.log("update Story")
+            await updateStory(dispatch, {id:storiesList.opend._id, content:draftToHtml(rawContentState)});
+        }
+        else{
+            await saveNewStory(dispatch, {storyType, title, content:draftToHtml(rawContentState)})
+        }
     }
     
     const handleTitle = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +75,7 @@ const WEditor = () =>{
                     </Select>
                 </FormControl>
 
-                <TextField id="story-title" label="Title" variant="outlined"  onChange={handleTitle}/>
+                <TextField id="story-title" label="Title" variant="outlined" value={title} onChange={handleTitle}/>
             </Box>
                 
             

@@ -30,6 +30,11 @@ export default function stories(state:any=initialState, action:any):  any{
             }
         case ActionTypes.STORY_SAVE_FAIL:
             return {...state, saveFailling: true}
+        case ActionTypes.STORY_SAVE_UPDATE:
+            // const updateIndex = state.list.findIndex((story:any)=> {
+            //     story._id === action.payload.id
+            // })
+            return state
         case ActionTypes.STORIES_LIST_PAGE_CHANGE:
         default:
             return state;

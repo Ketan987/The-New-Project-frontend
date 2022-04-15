@@ -19,6 +19,7 @@
     "axios": "^0.26.1",
     "dotenv": "^16.0.0",
     "draft-js": "^0.11.7",
+    "draft-js-import-html": "^1.4.1",
     "draftjs-to-html": "^0.9.1",
     "install": "^0.13.0",
     "moment": "^2.29.2",

@@ -15,6 +15,7 @@ export default {
     /*story specific */
     REQUEST_STORY_SAVE: 'REQUEST_STORY_SAVE',
     STORY_SAVE_FAIL: 'STORY_FAIL_SAVE',
+    STORY_SAVE_UPDATE: 'STORY_SAVE_UPDATE', 
 
 
     /*path */
