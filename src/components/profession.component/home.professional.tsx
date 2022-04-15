@@ -23,15 +23,6 @@ const HomeProfesssion = () => {
         {id: 5, label: "Appeared"}
     ];
 
-    const rows= [
-        {profession: "one", popularity: "two", demands: "three", profession_type: "four", people_choice: "five"},
-        {profession: "two", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""},
-        {profession: "", popularity: "", demands: "", profession_type: "", people_choice: ""}
-        
-    ];
-
     const handlePageChange = (event:unknown, newPage: number) => {
         setPage(newPage);
     };
@@ -60,77 +51,112 @@ const HomeProfesssion = () => {
         dispatch({type: ActionTypes.SELECT_PROFESSION_ACTION, payload: {selected: professionLists.list.find((profession:any) => profession.title === title)}})
         setView(true);
     }
+    const ListView = () => {
+        return(
+            <div>
+                <Paper sx={{ width: '100%', overflow: 'hidden'}}>
+                    <TableContainer sx={{ maxHeight: 500 }}>
+                        <Table stickyHeader aria-label="Professional List">
+                            <TableHead>
+                                <TableRow>
+                                    {columns.map((column) => (
+                                        <StyledTableCell
+                                        key={column.id}
+                                        >
+                                            {column.label}
+                                        </StyledTableCell>
+                                    ))}
+                                </TableRow>
+                            </TableHead>
+                            {loading ? (
+                                <TableBody>
+                                    {professionLists.list.map((row)=> {
+                                        return (
+                                            <TableRow>
+                                                
+                                                <StyledTableCell>
+                                                <Button onClick={() => handleClick(row.title)}>
+                                                {row.title}
+                                            </Button>    
+                                                </StyledTableCell>
+                                                <StyledTableCell
+                                                key={row.demands}
+                                                >
+                                                    {row.demands}
+                                                </StyledTableCell>
+                                                <StyledTableCell
+                                                key={row.popularity}
+                                                >
+                                                    {row.popularity}
+                                                </StyledTableCell>
+                                                <StyledTableCell
+                                                key={row.past_records.earning}
+                                                >
+                                                    {row.past_records.earning}
+                                                </StyledTableCell>
+                                                <StyledTableCell
+                                                key={row.people_choice}
+                                                >
+                                                    {row.people_choice}
+                                                </StyledTableCell>
+                                            </TableRow>
+                                        )
+                                    })}                                
+                                </TableBody>
+                            ):
+                            (
+                                <div>
+    
+                                </div>
+                            )}
+                        </Table>
+                    </TableContainer>
+                </Paper>
+            </div>
+        )
+    }
 
-    return(
-        <div>
-            <Paper sx={{ width: '100%', overflow: 'hidden'}}>
-                <TableContainer sx={{ maxHeight: 500 }}>
-                    <Table stickyHeader aria-label="Professional List">
-                        <TableHead>
-                            <TableRow>
-                                {columns.map((column) => (
-                                    <StyledTableCell
-                                    key={column.id}
-                                    >
-                                        {column.label}
+    const HalfAndHalfView = () => {
+        return (
+            <div style={{display: "flex"}}>
+                <div style={{flex:"0.3"}}>
+                    <TableContainer sx={{maxHeight: 500}}>
+                        <Table stickyHeader aria-lable="Profession-half-list">
+                            <TableHead>
+                                <TableRow>
+                                    <StyledTableCell>
+                                        Professions
                                     </StyledTableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>
-                        {loading ? (
+                                </TableRow>
+                            </TableHead>
                             <TableBody>
-                                {professionLists.list.map((row)=> {
+                                {professionLists.list.map((row:any)=>{
                                     return (
                                         <TableRow>
-                                            
                                             <StyledTableCell>
-                                            <Button onClick={() => handleClick(row.title)}>
-                                            {row.title}
-                                        </Button>    
-                                            </StyledTableCell>
-                                            <StyledTableCell
-                                            key={row.demands}
-                                            >
-                                                {row.demands}
-                                            </StyledTableCell>
-                                            <StyledTableCell
-                                            key={row.popularity}
-                                            >
-                                                {row.popularity}
-                                            </StyledTableCell>
-                                            <StyledTableCell
-                                            key={row.past_records.earning}
-                                            >
-                                                {row.past_records.earning}
-                                            </StyledTableCell>
-                                            <StyledTableCell
-                                            key={row.people_choice}
-                                            >
-                                                {row.people_choice}
+                                                <Button onClick={() => handleClick(row.title)}>
+                                                    {row.title}
+                                                </Button>    
                                             </StyledTableCell>
                                         </TableRow>
                                     )
-                                })}                                
+                                } )}
                             </TableBody>
-                        ):
-                        (
-                            <div>
+                        </Table>
+                    </TableContainer>
+                </div>
 
-                            </div>
-                        )}
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[5, 10, 25, 100]}
-                    component= "div"
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handlePageChange}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                >
-                </TablePagination>
-            </Paper>
+                <div style={{  textAlign: "center", flex:"0.7", border: '1px solid #4CAF50'}}>
+                    <p>{professionLists.opend.title}</p>
+                </div>
+            </div>
+        )
+    }
+
+    return (
+        <div>
+            <br></br>
+            {view ? <HalfAndHalfView /> : <ListView />}
         </div>
     )
 }
