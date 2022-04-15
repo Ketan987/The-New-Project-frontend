@@ -10,7 +10,8 @@ const initialState = {
     filter: false,
     search: false,
     failedFetch: {},
-    opened: {}
+    opened: {},
+    saveFailling: false
 }
 
 export default function stories(state:any=initialState, action:any):  any{
@@ -23,8 +24,23 @@ export default function stories(state:any=initialState, action:any):  any{
             return {...state, failedLoading: action.payload.err}
         case ActionTypes.SELECT_STORY_ACTION:
             return {...state, opend: action.payload.selected}
+        case ActionTypes.REQUEST_STORY_SAVE:
+            return {...state, 
+                list: state.list.push(action.payload.newStory)
+            }
+        case ActionTypes.STORY_SAVE_FAIL:
+            return {...state, saveFailling: true}
+        case ActionTypes.STORY_SAVE_UPDATE:
+            // const updateIndex = state.list.findIndex((story:any)=> {
+            //     story._id === action.payload.id
+            // })
+            return state
         case ActionTypes.STORIES_LIST_PAGE_CHANGE:
         default:
             return state;
     }
 }
+
+// state.list.find((story:any)=>
+//                     story.title === action.payload.newStory.title 
+//                 ) ? state.
