@@ -1,8 +1,9 @@
 import apiClient from "../apiClient";
 import ActionTypes from "../constant/ActionTypes";
+import constants from '../constant/config';
 
 export function fetchStoriesList(dispatch: Function) {
-    apiClient.get('http://localhost:5000/api/stories')
+    apiClient.get(`${constants.API_URL}stories`)
     .then(res => {
         dispatch({type: ActionTypes.RECEIVE_STORIES_LIST, payload: {list: res.data}})
     })
@@ -13,7 +14,7 @@ export function fetchStoriesList(dispatch: Function) {
 
 export function saveNewStory(dispatch:Function, payload: any){
     apiClient
-    .post('http://localhost:5000/api/story', {
+    .post(`${constants.API_URL}story`, {
         post_type: payload.storyType,
         post_title: payload.title,
         post_content: payload.content,
@@ -29,7 +30,7 @@ export function saveNewStory(dispatch:Function, payload: any){
 
 export function updateStory(dispatch:Function, payload:any){
     apiClient
-    .put(`http://localhost:5000/api/story/${payload.id}`, {
+    .put(`${constants.API_URL}story/${payload.id}`, {
         post_content: payload.content
     })
     .then(res=> {

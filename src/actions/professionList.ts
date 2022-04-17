@@ -1,9 +1,10 @@
 import ActionTypes from '../constant/ActionTypes';
 import api from '../apiClient/index';
+import constants from '../constant/config';
 
 
 export default function fetchProfessionalList(dispatch: Function){
-    api.get('http://localhost:5000/api/professions')
+    api.get(`${constants.API_URL}professions`)
     .then(res=>{
         console.log("RESPONSE CAME",res);
         dispatch({type: ActionTypes.RECEIVE_PROFESIION_LIST, payload:{list: res.data}})

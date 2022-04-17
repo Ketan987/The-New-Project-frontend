@@ -2,7 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const uglifyJs = require('uglify-js');
-const { argv } = require('process');
+// const { argv } = require('process');
+const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
+require('dotenv').config();
+
 
 function optimization(mode) {
     if (mode === 'production') {
@@ -29,41 +33,50 @@ function optimization(mode) {
     }
 }
 
-module.exports = {
-    entry: "./src/index",
-    output: {
-        path: path.join(__dirname, '/dist'),
-        filename: "bundle.js",
-    },
-    resolve: {
-        extensions: ['.ts', '.tsx', '.js']
-    },
-    devServer: {
-        historyApiFallback: true,
-        hot: true,
-        headers: {
-            'x-powered-By': 'NProjectTeam'
-        }
-    },
-    module:{
-        rules: [
-            {
-                test: /\.(ts|js)x?$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
+module.exports = (env, argv) => {
+    const envVariable = {
+        'process.env.API_URL': JSON.stringify(process.env.API_URL)
+    };
+
+
+    return {
+        entry: "./src/index",
+        output: {
+            path: path.join(__dirname, '/dist'),
+            filename: "bundle.js",
+        },
+        resolve: {
+            extensions: ['.ts', '.tsx', '.js']
+        },
+        devServer: {
+            historyApiFallback: true,
+            hot: true,
+            headers: {
+                'x-powered-By': 'NProjectTeam'
+            }
+        },
+        module:{
+            rules: [
+                {
+                    test: /\.(ts|js)x?$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                    },
                 },
-            },
-            {
-                test: /\.css$/i,
-                use: ["Style-loader", "css-loader"]
-            },
+                {
+                    test: /\.css$/i,
+                    use: ["Style-loader", "css-loader"]
+                },
+            ],
+        },
+        plugins: [
+            new Dotenv(),
+            new HtmlWebpackPlugin({
+                template: './src/index.html',
+            }),
+            new webpack.DefinePlugin(envVariable)
         ],
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-        }),
-    ],
-    optimization: optimization(argv.mode),
+        optimization: optimization(argv.mode),
+    }
 }
