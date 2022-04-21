@@ -2,6 +2,7 @@ import { Container } from '@mui/material';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalNavigator from './components/globalNavigation.component/Navigation';
+import LocalNavigator from './components/localNavigationComponent/Navigation'
 import HomeProfession from './components/profession.component/home.professional';
 import StoriesHome from './components/stories.component/home.stories';
 import Editor from './components/stories.component/creation.stories';
@@ -16,6 +17,7 @@ export default () => {
         <div>
             <Router>
                 <GlobalNavigator />
+                <LocalNavigator />
                 <Container>
                 <Routes>
                     <Route path='/' ></Route>

@@ -20,7 +20,7 @@ const StoriesHome = () => {
 
     const ListView = () => {
         return (
-            <div>
+            <div >
                 {storiesList.list.map((story:any) => {
                     return (
                         <div >
@@ -50,8 +50,8 @@ const StoriesHome = () => {
 
     const HalfAndHalfView = () => {
         return (
-            <div style={{display: "flex"}}>
-                <div style={{flex:"0.3"}}>
+            <div style={{display: "flex", height:"100vh"}}>
+                <div style={{flex:"0.3", overflowX:"scroll"}}>
                 {storiesList.list.map((story:any) => {
                     return (
                         <div >
@@ -69,7 +69,7 @@ const StoriesHome = () => {
                 })}
                 </div>
 
-                <div style={{ textAlign:"center", flex:"0.7", border: '1px solid #4CAF50'}}>
+                <div style={{ textAlign:"center", flex:"0.7", border: '1px solid #4CAF50', overflowX:"scroll"}}>
                     <p>selected {storiesList.opend.post_title}</p> 
                     <div dangerouslySetInnerHTML={{__html: storiesList.opend.post_content}}></div>
                     <Button onClick={() => {
@@ -87,7 +87,6 @@ const StoriesHome = () => {
 
     return (
         <div>
-            <p>it's working</p>
             <Button onClick={() => {
                 navigate('/story/create')
             }}>create</Button>

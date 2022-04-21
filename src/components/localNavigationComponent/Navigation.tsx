@@ -21,7 +21,9 @@ const useStyles = makeStyles ({
     float: 'right'
   },
   appBar:{
-    backgroundColor:"green !important"
+    backgroundColor:"grey !important",
+    height: "40px !important",
+    marginBottom:"1.5rem"
   }
 })
 
@@ -33,29 +35,12 @@ const NavigationLocal = () => {
       <AppBar position="static" className={classes.appBar} >
         <Container>
           <Toolbar disableGutters className={classes.root}>
-            <Box>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-              >
-                LOGO
-              </Typography>
-            </Box>
+            
             <Box  className={classes.pageName}>
-              {menuNames.map((menu: string) => (
-                <Box >
-                  <Link className={classes.PageNameLinks} to={`/${menu}`}>{menu.toUpperCase()}</Link>
-                </Box>
-              ))}
+
             </Box>
   
-            <Box>
-              <Avatar className={classes.avatar}>
-                K
-              </Avatar>
-            </Box>
+           
           </Toolbar>
         </Container>
       </AppBar>

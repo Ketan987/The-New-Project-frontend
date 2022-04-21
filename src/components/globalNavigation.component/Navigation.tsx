@@ -27,7 +27,7 @@ const GlobalNavigation = () => {
   const classes = useStyles();
   const menuNames = ["professions", "stories", "path"]
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container>
         <Toolbar disableGutters className={classes.root}>
           <Box>
