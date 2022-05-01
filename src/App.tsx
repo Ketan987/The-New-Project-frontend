@@ -9,7 +9,9 @@ import HomePath from './components/path.component/home.path';
 import SelectPath from './components/path.component/select.path';
 import UserPage from './components/user.component/userPage';
 import NotFoundPage from './components/NotFound';
+import Dashboard from "./components/Dashboard/dashboard"
 import AppDiagram from './components/path.component/storm-diagram/index';
+
 
 
 export default () => {
@@ -19,7 +21,7 @@ export default () => {
                 <GlobalNavigator />
                 <Container>
                 <Routes>
-                    <Route path='/' ></Route>
+                    <Route path='/' element={<Dashboard />}></Route>
                     <Route path='/professions' element ={<HomeProfession />}></Route>
                     <Route path='/stories' element={<StoriesHome />}></Route>
                     <Route path='/story/:action' element ={<Editor />} />

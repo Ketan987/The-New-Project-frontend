@@ -80,9 +80,9 @@ const HomeProfesssion = () => {
                                             </Button>    
                                                 </StyledTableCell>
                                                 <StyledTableCell
-                                                key={row.demands}
+                                                key={row.popularity}
                                                 >
-                                                    {row.demands}
+                                                    {row.popularity}
                                                 </StyledTableCell>
                                                 <StyledTableCell
                                                 key={row.popularity}
@@ -90,9 +90,9 @@ const HomeProfesssion = () => {
                                                     {row.popularity}
                                                 </StyledTableCell>
                                                 <StyledTableCell
-                                                key={row.past_records.earning}
+                                                key={row.analysis_records?.earning}
                                                 >
-                                                    {row.past_records.earning}
+                                                    {row.analysis_records?.earning}
                                                 </StyledTableCell>
                                                 <StyledTableCell
                                                 key={row.people_choice}

@@ -1,7 +1,8 @@
-import { AppBar, Avatar, Container, Toolbar, Typography, Box } from '@mui/material';
+import { AppBar, Avatar, Container, Toolbar, Typography, Box, Button} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles ({
   root:{
@@ -16,46 +17,38 @@ const useStyles = makeStyles ({
     padding: "1.5rem",
     color: "red",
     textDecoration:"none"
+
+
+    
   },
   avatar: {
     float: 'right'
   },
   appBar:{
-    backgroundColor:"green !important"
+    backgroundColor:"#FCFFE7 !important",
+    height: "60px !important",
+    marginBottom:"1.5rem",
+
   }
 })
 
 const NavigationLocal = () => {
   const classes = useStyles();
   const menuNames = ["professions", "story", "path"]
+  const navigate = useNavigate();
 
     return (
-      <AppBar position="static" className={classes.appBar} >
-        <Container>
+      <AppBar position="relative" className={classes.appBar} >
+        <Container >
           <Toolbar disableGutters className={classes.root}>
-            <Box>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-              >
-                LOGO
-              </Typography>
-            </Box>
+            
             <Box  className={classes.pageName}>
-              {menuNames.map((menu: string) => (
-                <Box >
-                  <Link className={classes.PageNameLinks} to={`/${menu}`}>{menu.toUpperCase()}</Link>
-                </Box>
-              ))}
+            <Button variant="contained" onClick={() => {
+                navigate('/story/create')
+            }}>create</Button>
             </Box>
   
-            <Box>
-              <Avatar className={classes.avatar}>
-                K
-              </Avatar>
-            </Box>
+           
           </Toolbar>
         </Container>
       </AppBar>

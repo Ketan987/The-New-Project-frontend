@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
   PageNameLinks:{
     padding: "1.5rem",
-    color: "red",
+    color: "white",
     textDecoration:"none"
   },
   avatar: {
@@ -27,18 +27,20 @@ const GlobalNavigation = () => {
   const classes = useStyles();
   const menuNames = ["professions", "stories", "path"]
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container>
         <Toolbar disableGutters className={classes.root}>
           <Box>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            <Link
+            to="/"
+            style={{textDecoration:"none", color: "white"}}
+              // variant="h6"
+              // noWrap
+              // component="div"
+              // sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
             >
               LOGO
-            </Typography>
+            </Link>
           </Box>
           <Box  className={classes.pageName}>
             {menuNames.map((menu: string) => (
