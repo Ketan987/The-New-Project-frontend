@@ -1,9 +1,10 @@
-import { Button, Card, CardContent, Grid, Typography } from '@mui/material';
+import { Button, Card, CardContent, Grid, Typography, Container } from '@mui/material';
 import ActionTypes from '../../constant/ActionTypes';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {fetchStoriesList} from '../../actions/storiesList'
 import { useNavigate } from "react-router-dom";
+import LocalNavbar from "../localNavigationComponent/Navigation"
 
 const StoriesHome = () => {
     const dispatch = useDispatch();
@@ -87,9 +88,10 @@ const StoriesHome = () => {
 
     return (
         <div>
-            <Button onClick={() => {
-                navigate('/story/create')
-            }}>create</Button>
+            <Container maxWidth="lg">
+            <LocalNavbar />
+            </Container>
+            
             {view ? <HalfAndHalfView /> : <ListView />}
         </div>
     )
