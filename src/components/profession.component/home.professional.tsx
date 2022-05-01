@@ -14,6 +14,7 @@ const HomeProfesssion = () => {
     const dispatch = useDispatch();
     const professionLists = useSelector((state:any)=> state.profesionReducer);
     console.log(professionLists.list);
+    console.log(professionLists.list)
 
     const columns = [
         {id: 1, label: "Profession"},
@@ -80,9 +81,9 @@ const HomeProfesssion = () => {
                                             </Button>    
                                                 </StyledTableCell>
                                                 <StyledTableCell
-                                                key={row.popularity}
+                                                key={row.profession_type}
                                                 >
-                                                    {row.popularity}
+                                                    {row.profession_type}
                                                 </StyledTableCell>
                                                 <StyledTableCell
                                                 key={row.popularity}
@@ -92,12 +93,12 @@ const HomeProfesssion = () => {
                                                 <StyledTableCell
                                                 key={row.analysis_records?.earning}
                                                 >
-                                                    {row.analysis_records?.earning}
+                                                    {row.analysis_records[row.analysis_records.length - 1].earning}
                                                 </StyledTableCell>
                                                 <StyledTableCell
                                                 key={row.people_choice}
                                                 >
-                                                    {row.people_choice}
+                                                    {row.analysis_records[row.analysis_records.length - 1].demand}
                                                 </StyledTableCell>
                                             </TableRow>
                                         )

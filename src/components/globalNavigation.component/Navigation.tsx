@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 const GlobalNavigation = () => {
 
   const classes = useStyles();
-  const menuNames = ["professions", "stories", "path"]
+  const menuNames = ["professions", "stories", "paths"]
   return (
     <AppBar position="sticky">
       <Container>
