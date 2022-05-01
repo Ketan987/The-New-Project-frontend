@@ -10,6 +10,8 @@ import SelectPath from './components/path.component/select.path';
 import UserPage from './components/user.component/userPage';
 import NotFoundPage from './components/NotFound';
 import Dashboard from "./components/Dashboard/dashboard"
+import AppDiagram from './components/path.component/storm-diagram/index';
+
 
 
 export default () => {
@@ -24,8 +26,7 @@ export default () => {
                     <Route path='/stories' element={<StoriesHome />}></Route>
                     <Route path='/story/:action' element ={<Editor />} />
                     <Route path='/paths' element={<HomePath />}></Route>
-                    <Route path='/path/:name' element={<SelectPath />}></Route>
-                    <Route path='/user/:userName' element={<UserPage />}></Route>
+                    <Route path='/path/:name' element={<AppDiagram />}></Route>
                     <Route path='*' element={<NotFoundPage />}></Route>
                 </Routes>
                 </Container>
